@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Task Management</title>
+
+    <!-- ✅ Make sure path matches your folder -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Student Task Management</h2>
+        <p class="subtitle">Login to continue</p>
+
+        <form id="loginForm">
+            <label>Username:</label>
+            <input type="text" id="username" placeholder="Enter username" required>
+
+            <label>Password:</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p id="errorMsg" class="error"></p>
+
+        <!-- Demo Credentials (optional for your demo) -->
+        <div class="demo-accounts">
+            <p><strong>Demo Accounts:</strong></p>
+            <small>Admin: admin / admin123</small><br>
+            <small>Student: student1 / 123</small>
+        </div>
+    </div>
+
+    <!-- ✅ Correct path -->
+    <script src="script.js"></script>
+
+    <script>
+        // ==========================
+        // 🔐 AUTO REDIRECT IF LOGGED IN
+        // ==========================
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (user) {
+            if (user.role === "admin") {
+                window.location.href = "admin-dashboard.html";
+            } else {
+                window.location.href = "student-dashboard.html";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <!-- Only one logout button is needed -->
+        <button id="logoutBtn" class="btn-logout">Logout</button>
+    </header>
+
+    <section>
+        <h2>Add / Edit Task</h2>
+
+        <form id="taskForm">
+            <input type="hidden" id="taskId">
+
+            <label for="title">Task Title:</label>
+            <input type="text" id="title" placeholder="Enter task title" required>
+
+            <label for="assignedTo">Assign To:</label>
+            <select id="assignedTo" required>
+                <option value="">Select Student</option>
+                <option value="student1">student1</option>
+                <option value="student2">student2</option>
+            </select>
+
+            <label for="deadline">Deadline:</label>
+            <input type="date" id="deadline" required>
+
+            <button type="submit">Save Task</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Task List</h2>
+
+        <table id="taskTable">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Task</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Tasks will be dynamically loaded here by script.js -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Correct path to your JS -->
+    <script src="script.js"></script>
+
+    <!-- Optional: redirect if not logged in or not admin -->
+    <script>
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || user.role !== "admin") {
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
